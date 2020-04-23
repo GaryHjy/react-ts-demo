@@ -1,11 +1,11 @@
 import { TypeAction } from "../../typings/common";
 
-interface TypeHome {
-
+export interface TypeHome {
+  currentCategory: string;
 }
 
 let initialState = {
-
+  currentCategory: 'all'
 }
 
 export default function (state: TypeHome = initialState, action: TypeAction) {
