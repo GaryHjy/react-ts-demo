@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import { TypeRootState } from '../../store/reducers';
-import { TypeMime } from '../../store/reducers/mime';
-import actions from '../../store/actions/mime';
+import { TypeMine } from '../../store/reducers/mine';
+import actions from '../../store/actions/mine';
 import { RouteComponentProps } from 'react-router-dom';
 import './index.less';
 
@@ -16,19 +16,19 @@ type Props = StateProps & DispatchProps & RouteProps & {
   children?: any
 }
 
-class Mime extends Component<Props, State> {
+class Mine extends Component<Props, State> {
   render () {
     return (
       <div>
-        Mime
+        Mine
       </div>
     )
   }
 }
 
-let mapStateToProps = (state: TypeRootState): TypeMime => state.mime
+let mapStateToProps = (state: TypeRootState): TypeMine => state.mine
 
 export default connect(
   mapStateToProps,
   actions
-)(Mime)
+)(Mine)

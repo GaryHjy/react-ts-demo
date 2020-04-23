@@ -1,6 +1,6 @@
 import { TypeAction } from "../../typings/common";
 
-export interface TypeMime {
+export interface TypeMine {
   
 }
 
@@ -8,7 +8,7 @@ let initialState = {
   
 }
 
-export default function (state: TypeMime = initialState, action: TypeAction) {
+export default function (state: TypeMine = initialState, action: TypeAction) {
   switch(action.type) {
     default:
       return state;
