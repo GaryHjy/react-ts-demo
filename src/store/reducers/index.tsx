@@ -2,11 +2,13 @@ import { combineReducers } from 'redux';
 import { connectRouter } from 'connected-react-router';
 import home from './home';
 import mime from './mime';
+import profile from './profile';
 import history from '../history';
 
 let reducers = {
   home,
   mime,
+  profile,
   router: connectRouter(history)
 }
 
