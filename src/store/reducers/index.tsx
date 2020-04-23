@@ -1,10 +1,12 @@
 import { combineReducers } from 'redux';
 import { connectRouter } from 'connected-react-router';
 import home from './home';
+import mime from './mime';
 import history from '../history';
 
 let reducers = {
   home,
+  mime,
   router: connectRouter(history)
 }
 
