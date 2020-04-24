@@ -9,6 +9,7 @@ import history from './store/history';
 import Home from './routes/Home';
 import Mine from './routes/Mine';
 import Profile from './routes/Profile';
+import Tabs from './components/Tabs/index';
 
 ReactDOM.render((
   <Provider store={store}>
@@ -21,6 +22,7 @@ ReactDOM.render((
           <Redirect to="/" />
         </Switch>
       </main>
+      <Tabs />
     </ConnectedRouter>
   </Provider>
 ), document.getElementById('root'));

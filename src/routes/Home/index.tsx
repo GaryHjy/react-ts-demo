@@ -4,6 +4,7 @@ import { TypeRootState } from '../../store/reducers';
 import { TypeHome } from '../../store/reducers/home';
 import actions from '../../store/actions/home';
 import { RouteComponentProps } from 'react-router-dom';
+import HomeHeader from './HomeHeader/index';
 import './index.less';
 
 interface State {}
@@ -23,7 +24,12 @@ type Props = StateProps & DispatchProps & RouteProps & {
 
 class Home extends Component<Props, State> {
   render () {
-    return <div>首页</div>
+    return <div>
+      <HomeHeader
+        setCurrentCategory={this.props.setCurrentCategory}
+        currentCategory={this.props.currentCategory} />  
+      首页
+    </div>
   }
 }
 let mapStateToProps = (state: TypeRootState):TypeHome => state.home;
