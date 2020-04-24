@@ -1,21 +1,26 @@
 {
-  "compilerOptions": {
-    "outDir": "./dist",
-    /* 指定输出目录 */
-    "sourceMap": true,
-    /* 把ts 文件编译成 js 文件的时候，同时生成对应的sourceMap文件 */
-    "noImplicitAny": true,
-    /* 如果为true的话，TypeScript 编译器无法推断出类型时，它仍然会生成 JavaScript 文件，但是它也会报告一个错误 */
-    "target": "es5",
-    /* 转换成es5 */
-    "module": "commonjs",
-    /* 代码规范*/
-    "jsx": "react",
-    /* react模式会生成React.createElement，在使用前不需要再进行转换操作了，输出文件的扩展名为.js */
-    "esModuleInterop": true,
-    /* 设置 esModuleInterop: true 使 typescript 来兼容所有模块方案的导入 */
-  },
+  "exclude": [
+    "node_modules"
+  ],
   "include": [
     "./src/**/*"
-  ]
+  ],
+  "compilerOptions": {
+    "outDir": "./dist",
+    "sourceMap": true,
+    "noImplicitAny": true,
+    "module": "commonjs",
+    "jsx": "react",
+    "esModuleInterop": true,
+    "target": "es5",
+    "baseUrl": ".",
+    "paths": {
+      "~/*": [
+        "node_modules/*"
+      ],
+      "@/*": [
+        "src/*"
+      ]
+    }
+  }
 }
