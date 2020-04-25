@@ -24,7 +24,7 @@ type Props = StateProps & DispatchProps & RouteProps & {
 
 class Home extends Component<Props, State> {
   render () {
-    return <div>
+    return <div className="home">
       <HomeHeader
         setCurrentCategory={this.props.setCurrentCategory}
         currentCategory={this.props.currentCategory} />  
