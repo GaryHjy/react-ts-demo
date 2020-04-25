@@ -5,6 +5,9 @@ import { TypeProfile } from '../../store/reducers/profile';
 import actions from '../../store/actions/profile';
 import { RouteComponentProps } from 'react-router-dom';
 import './index.less';
+import { Descriptions, Button, Alert } from 'antd';
+import NavHeader from '../../components/NavHeader';
+import LOGIN_TYPES from '../../typings/login-types';
 
 interface State {}
 
@@ -17,11 +20,37 @@ type Props = StateProps & DispatchProps & RouteProps & {
 }
 
 class Profile extends Component<Props, State> {
-  render () {
+  render() {
+    let content;
+    if (this.props.loginState === LOGIN_TYPES.UN_VALIDATE) {
+      content = null
+    } else if (this.props.loginState === LOGIN_TYPES.LOGIN_ED) {
+      content = (
+        <div className="user-info">
+          <Descriptions title="当前用户名">
+            <Descriptions.Item label="用户名">小明</Descriptions.Item>
+            <Descriptions.Item label="手机号">13131313131</Descriptions.Item>
+            <Descriptions.Item label="邮箱">66666@qq.com</Descriptions.Item>
+          </Descriptions>
+          <Button type="danger">退出登录</Button>
+        </div>
+      )
+    } else {
+      content = (
+        <>
+          <Alert type="warning" message="当前未登录" description="您当前未登录，请选择登录或者注册"></Alert>
+          <div style={{ textAlign: "center", padding: ".5rem" }}>
+            <Button type="dashed" onClick={() => this.props.history.push('/login')}>登录</Button>
+            <Button type="dashed" style={{ marginLeft: ".5rem" }} onClick={() => this.props.history.push('/register')}>注册</Button>
+          </div>
+        </>
+      )
+    }
     return (
-      <div>
-        Profile
-      </div>
+      <section>
+        <NavHeader history={this.props.history}>个人中心</NavHeader>
+        {content}
+      </section>
     )
   }
 }

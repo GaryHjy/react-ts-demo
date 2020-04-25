@@ -7,12 +7,12 @@ class Tabs extends Component {
     return (
       <footer>
         <NavLink to="/" exact>
-          <span>首页</span>
-        </NavLink>
-        <NavLink to="/profile">
-          我的课程
+          首页
         </NavLink>
         <NavLink to="/mine">
+          我的课程
+        </NavLink>
+        <NavLink to="/profile">
           个人中心
         </NavLink>
       </footer>
