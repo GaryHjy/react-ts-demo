@@ -20,6 +20,16 @@ type Props = StateProps & DispatchProps & RouteProps & {
 }
 
 class Profile extends Component<Props, State> {
+
+  // 组件挂载完成
+  async componentDidMount() {
+    if (this.props.loginState === LOGIN_TYPES.UN_VALIDATE) {
+      // 服务器发请求，获取当前用户状态
+      await this.props.validate();
+    }
+
+  }
+
   render() {
     let content;
     if (this.props.loginState === LOGIN_TYPES.UN_VALIDATE) {

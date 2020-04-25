@@ -9,7 +9,7 @@ const { User } = require('./config/db');
 
 app.use(
   cors({
-    origin: '*',
+    origin: ['http://localhost:8080'],
     credentials: true,
     allowedHeaders: "Content-type",
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS"
