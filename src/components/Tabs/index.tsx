@@ -9,10 +9,10 @@ class Tabs extends Component {
         <NavLink to="/" exact>
           <span>首页</span>
         </NavLink>
-        <NavLink to="/mine">
+        <NavLink to="/profile">
           我的课程
         </NavLink>
-        <NavLink to="/profile">
+        <NavLink to="/mine">
           个人中心
         </NavLink>
       </footer>
