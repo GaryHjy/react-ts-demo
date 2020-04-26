@@ -5,7 +5,7 @@ const MongoStore = require('connect-mongo')(session);
 const app = express();
 const cors = require('cors');
 const { url } = require('./config/setting');
-const { User } = require('./config/db');
+const { User, Slider } = require('./config/db');
 const { md5 } = require('./utils');
 const path = require('path');
 const multer = require('multer');
@@ -94,6 +94,22 @@ app.post('/api/uploadAvatar', upload.single('avatar'), async (req, res) => {
     data: avatar 
   });
 })
+
+app.get('/api/getSliders', async (req, res) => {
+  const result = await Slider.find()
+  res.json({
+    code: 0,
+    data: result
+  });
+})
+
+// app.post('/api/getSliders', async (req, res) => {
+//   const result = await Slider.create(req.body);
+//   res.json({
+//     code: 0,
+//     data: result
+//   })
+// })
 
 app.listen('9000', () => {
   console.log('启动成功！')

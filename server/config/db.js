@@ -14,6 +14,13 @@ const UserSchema = new mongoose.Schema({
 
 const User = conn.model('User', UserSchema);
 
+const SliderSchema = new mongoose.Schema({
+  url: String
+})
+
+const Slider = conn.model('Slider', SliderSchema);
+
 module.exports = {
-  User, 
+  User,
+  Slider
 }
