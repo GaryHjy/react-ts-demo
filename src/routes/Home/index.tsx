@@ -5,6 +5,7 @@ import { TypeHome } from '../../store/reducers/home';
 import actions from '../../store/actions/home';
 import { RouteComponentProps } from 'react-router-dom';
 import HomeHeader from './HomeHeader/index';
+import HomeSlider from './HomeSlider/index'
 import './index.less';
 
 interface State {}
@@ -23,13 +24,25 @@ type Props = StateProps & DispatchProps & RouteProps & {
 }
 
 class Home extends Component<Props, State> {
+  homeContainerRef: any
+  constructor(props: Props) {
+    super(props)
+    this.homeContainerRef = React.createRef();
+  }
   render () {
-    return <div className="home">
-      <HomeHeader
-        setCurrentCategory={this.props.setCurrentCategory}
-        currentCategory={this.props.currentCategory} />  
-      首页
-    </div>
+    return (
+      <div className="home">
+        <HomeHeader
+          setCurrentCategory={this.props.setCurrentCategory}
+          currentCategory={this.props.currentCategory} />
+        <div className="home-container" ref={this.homeContainerRef}>
+          <HomeSlider
+            sliders={this.props.sliders}
+            getSliders={this.props.getSliders}
+          />
+        </div>
+      </div>
+    )
   }
 }
 let mapStateToProps = (state: TypeRootState):TypeHome => state.home;
