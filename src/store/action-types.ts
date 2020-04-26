@@ -5,3 +5,6 @@ export const VALIDATE = 'VALIDATE'
 
 // 用户退出
 export const LOGOUT = 'LOGOUT'
+
+// 修改头像
+export const CHANGE_AVATAR = 'CHANGE_AVATAR'

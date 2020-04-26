@@ -45,5 +45,12 @@ export default {
       type: TYPES.LOGOUT,
       payload: logout()
     }
+  },
+
+  changeAvatar(avatar:string) {
+    return {
+      type: TYPES.CHANGE_AVATAR,
+      payload: avatar
+    }
   }
 }

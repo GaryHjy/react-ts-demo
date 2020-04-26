@@ -26,6 +26,8 @@ export default function (state: TypeProfile = initialState, action: TypeAction):
       break;
     case TYPES.LOGOUT: 
       return { ...state, loginState: LOGIN_TYPES.UN_LOGIN, user: null, error: null }
+    case TYPES.CHANGE_AVATAR:
+      return {...state, user: {...state.user, avatar: action.payload}}
     default:
       return state;
   }
