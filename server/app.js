@@ -6,7 +6,7 @@ const app = express();
 const cors = require('cors');
 const { url } = require('./config/setting');
 const { User } = require('./config/db');
-const { md5} = require('./utils');
+const { md5 } = require('./utils');
 
 app.use(
   cors({
@@ -53,17 +53,17 @@ app.post('/api/login', async (req, res) => {
 })
 
 app.get('/api/validate', async (req, res) => {
-  if (req.session.user) {
-    res({
-      code: 0,
-      data: req.session.user
-    })
+  let user = req.session.user;
+  if (user) {
+    res.json({ code: 0, data: user });
   } else {
-    res.json({
-      code: 1,
-      error: '此用户尚未登录'
-    })
+    res.json({ code: 1, error: '当前用户未登录' });
   }
+})
+
+app.get('/api/logout', async (req, res) => {
+  req.session.user = null;
+  res.json({ code: 0, data: "退出登录成功" });
 })
 
 app.listen('9000', () => {
