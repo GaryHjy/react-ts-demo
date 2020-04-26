@@ -1,6 +1,6 @@
 import * as TYPES from '../action-types';
-import { Dispatch, Store } from 'redux';
-import { validate, register } from '../../api/profile';
+import { Dispatch } from 'redux';
+import { validate, register, login, logout } from '../../api/profile';
 import { TypeAnyObject, TypeThunkFunction } from '../../typings/common';
 import { push } from 'connected-react-router';
 import { message } from 'antd';
@@ -16,13 +16,34 @@ export default {
   },
   // 注册用户
   register(values: TypeAnyObject): TypeThunkFunction {
-    return async function (dispatch: Dispatch, getState: Store['getState']) {
+    return async function (dispatch: Dispatch) {
       let result: TypeAnyObject  = await register(values);
       if (result.code === 0) {
         dispatch(push('/login'));
       } else {
         message.error(result.error);
       }
+    }
+  },
+
+  // 登录
+  login(values: TypeAnyObject): TypeThunkFunction {
+    return function(dispatch: Dispatch) {
+      login(values).then((result: TypeAnyObject) => {
+        if (result.code === 0) {
+          dispatch(push('/profile'));
+        } else {
+          message.error(result.error);
+        }
+      })
+    }
+  },
+
+  // 退出
+  logout() {
+    return {
+      type: TYPES.LOGOUT,
+      payload: logout()
     }
   }
 }

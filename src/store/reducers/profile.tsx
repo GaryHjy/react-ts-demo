@@ -23,7 +23,9 @@ export default function (state: TypeProfile = initialState, action: TypeAction):
       } else {
         return { ...state, loginState: LOGIN_TYPES.UN_LOGIN, user: null, error }
       }
-      break; 
+      break;
+    case TYPES.LOGOUT: 
+      return { ...state, loginState: LOGIN_TYPES.UN_VALIDATE, user: null, error: null }
     default:
       return state;
   }

@@ -29,8 +29,8 @@ class Profile extends Component<Props, State> {
     }
 
   }
-
   render() {
+    let { user } = this.props;
     let content;
     if (this.props.loginState === LOGIN_TYPES.UN_VALIDATE) {
       content = null
@@ -38,11 +38,18 @@ class Profile extends Component<Props, State> {
       content = (
         <div className="user-info">
           <Descriptions title="当前用户名">
-            <Descriptions.Item label="用户名">小明</Descriptions.Item>
-            <Descriptions.Item label="手机号">13131313131</Descriptions.Item>
-            <Descriptions.Item label="邮箱">66666@qq.com</Descriptions.Item>
+            <Descriptions.Item label="用户名">{ user.username }</Descriptions.Item>
+            <Descriptions.Item label="手机号">{ user.phone }</Descriptions.Item>
+            <Descriptions.Item label="邮箱">{ user.email }</Descriptions.Item>
           </Descriptions>
-          <Button type="danger">退出登录</Button>
+          <Button type="danger"
+            onClick={async event => {
+              await this.props.logout();
+              this.props.history.push('/login');
+            }}
+          >
+            退出登录
+          </Button>
         </div>
       )
     } else {
