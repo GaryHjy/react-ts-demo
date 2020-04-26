@@ -1,5 +1,9 @@
 import * as TYPES from '../action-types';
-import { validate } from '../../api/profile';
+import { Dispatch, Store } from 'redux';
+import { validate, register } from '../../api/profile';
+import { TypeAnyObject, TypeThunkFunction } from '../../typings/common';
+import { push } from 'connected-react-router';
+import { message } from 'antd';
 
 export default {
   validate() {
@@ -8,6 +12,17 @@ export default {
     return {
       type: TYPES.VALIDATE,
       payload: validate()
+    }
+  },
+  // 注册用户
+  register(values: TypeAnyObject): TypeThunkFunction {
+    return async function (dispatch: Dispatch, getState: Store['getState']) {
+      let result: TypeAnyObject  = await register(values);
+      if (result.code === 0) {
+        dispatch(push('/login'));
+      } else {
+        message.error(result.error);
+      }
     }
   }
 }

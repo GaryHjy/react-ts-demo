@@ -6,6 +6,7 @@ const app = express();
 const cors = require('cors');
 const { url } = require('./config/setting');
 const { User } = require('./config/db');
+const { md5} = require('./utils');
 
 app.use(
   cors({
@@ -26,6 +27,7 @@ app.use(session({
 }))
 app.post('/api/register', async (req, res) => {
   const user = req.body;
+  user.avatar = `http://secure.gravatar.com/avatar/${md5(user.email)}?s=48`
   const result = await User.create(user);
   res.json({
     code: 0,
