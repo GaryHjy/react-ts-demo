@@ -7,15 +7,28 @@ const cors = require('cors');
 const { url } = require('./config/setting');
 const { User } = require('./config/db');
 const { md5 } = require('./utils');
+const path = require('path');
+const multer = require('multer');
+const upload = multer({ dest: path.join(__dirname, 'public') });
+
+app.use(express.static(path.join(__dirname, 'public')))
 
 app.use(
   cors({
     origin: ['http://localhost:8080'],
     credentials: true,
-    allowedHeaders: "Content-type",
+    allowedHeaders: "Content-type,x-requested-with",
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS"
   })
 )
+app.use((req,res,next) => {
+  if(req.method === 'OPTIONS') {
+    res.sendStatus('200')
+  } else {
+    next();
+  }
+})
+
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(session({
@@ -64,6 +77,22 @@ app.get('/api/validate', async (req, res) => {
 app.get('/api/logout', async (req, res) => {
   req.session.user = null;
   res.json({ code: 0, data: "退出登录成功" });
+})
+
+app.post('/api/uploadAvatar', upload.single('avatar'), async (req, res) => {
+  const avatar = `http://localhost:9000/${req.file.filename}` 
+  await User.updateOne({
+    _id: req.body.userId
+  }, {
+    avatar
+  })
+  if (req.session.user){
+    req.session.user.avatar = avatar;
+  }
+  res.json({ 
+    code: 0,
+    data: avatar 
+  });
 })
 
 app.listen('9000', () => {
