@@ -28,14 +28,14 @@ export default {
 
   // 登录
   login(values: TypeAnyObject): TypeThunkFunction {
-    return function(dispatch: Dispatch) {
-      login(values).then((result: TypeAnyObject) => {
-        if (result.code === 0) {
-          dispatch(push('/profile'));
-        } else {
-          message.error(result.error);
-        }
-      })
+    return async function(dispatch: Dispatch) {
+      let result: TypeAnyObject = await login(values);
+      if (result.code === 0) {
+        dispatch(push('/profile'));
+      } else {
+        message.error(result.error);
+      }
+
     }
   },
 

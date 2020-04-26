@@ -9,7 +9,7 @@ export interface TypeProfile {
 }
 
 let initialState: TypeProfile = {
-  loginState: LOGIN_TYPES.UN_VALIDATE,
+  loginState: LOGIN_TYPES.UN_LOGIN,
   user: null,
   error: null
 }
@@ -25,7 +25,7 @@ export default function (state: TypeProfile = initialState, action: TypeAction):
       }
       break;
     case TYPES.LOGOUT: 
-      return { ...state, loginState: LOGIN_TYPES.UN_VALIDATE, user: null, error: null }
+      return { ...state, loginState: LOGIN_TYPES.UN_LOGIN, user: null, error: null }
     default:
       return state;
   }

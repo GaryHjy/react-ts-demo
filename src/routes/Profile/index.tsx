@@ -23,18 +23,13 @@ class Profile extends Component<Props, State> {
 
   // 组件挂载完成
   async componentDidMount() {
-    if (this.props.loginState === LOGIN_TYPES.UN_VALIDATE) {
-      // 服务器发请求，获取当前用户状态
-      await this.props.validate();
-    }
-
+    // 服务器发请求，获取当前用户状态
+    await this.props.validate();
   }
   render() {
     let { user } = this.props;
     let content;
-    if (this.props.loginState === LOGIN_TYPES.UN_VALIDATE) {
-      content = null
-    } else if (this.props.loginState === LOGIN_TYPES.LOGIN_ED) {
+    if (this.props.loginState === LOGIN_TYPES.LOGIN_ED) {
       content = (
         <div className="user-info">
           <Descriptions title="当前用户名">
