@@ -9,7 +9,7 @@ export interface TypeProfile {
 }
 
 let initialState: TypeProfile = {
-  loginState: LOGIN_TYPES.UN_LOGIN,
+  loginState: LOGIN_TYPES.UN_VALIDATE,
   user: null,
   error: null
 }

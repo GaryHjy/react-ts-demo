@@ -65,7 +65,9 @@ class Profile extends Component<Props, State> {
   render() {
     let { user } = this.props;
     let content;
-    if (this.props.loginState === LOGIN_TYPES.LOGIN_ED) {
+    if (this.props.loginState === LOGIN_TYPES.UN_VALIDATE) {
+      content = null;
+    } else if (this.props.loginState === LOGIN_TYPES.LOGIN_ED) {
       const uploadButton = (
         <div>
           {this.state.loading ? <LoadingOutlined /> : <PlusOutlined />}
