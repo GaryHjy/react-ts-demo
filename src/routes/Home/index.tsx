@@ -8,6 +8,7 @@ import HomeHeader from './HomeHeader/index';
 import HomeSlider from './HomeSlider/index'
 import LessonList from './LessonList/index';
 import './index.less';
+import { loadMore } from '../../utils/index';
 
 interface State {}
 // 当前组件有四个属性来源
@@ -26,9 +27,14 @@ type Props = StateProps & DispatchProps & RouteProps & {
 
 class Home extends Component<Props, State> {
   homeContainerRef: any
+  lessonListRef: any
   constructor(props: Props) {
     super(props)
     this.homeContainerRef = React.createRef();
+    this.lessonListRef = React.createRef();
+  }
+  componentDidMount() {
+    loadMore(this.homeContainerRef.current, this.props.getLessons)
   }
   render () {
     return (
@@ -42,6 +48,7 @@ class Home extends Component<Props, State> {
             getSliders={this.props.getSliders}
           />
           <LessonList 
+            ref={this.lessonListRef}
             lessons={this.props.lessons}
             getLessons={this.props.getLessons}
           />
