@@ -5,7 +5,7 @@ const MongoStore = require('connect-mongo')(session);
 const app = express();
 const cors = require('cors');
 const { url } = require('./config/setting');
-const { User, Slider } = require('./config/db');
+const { User, Slider, Lesson } = require('./config/db');
 const { md5 } = require('./utils');
 const path = require('path');
 const multer = require('multer');
@@ -110,6 +110,25 @@ app.get('/api/getSliders', async (req, res) => {
 //     data: result
 //   })
 // })
+
+
+app.get('/api/getLessons', async (req,res) => {
+  let { category = 'all', offset, limit} = req.query;
+  offset = isNaN(offset) ? 0 : parseInt(offset);//偏移量 
+  limit = isNaN(limit) ? 5 : parseInt(limit); //每页条数
+  let query = {}
+  if (category !== 'all') {
+    query['category'] = category
+  }
+  const total = await Lesson.countDocuments(query);
+  const list = await Lesson.find(query).sort({ order: 1}).skip(offset).limit(limit);
+  res.json({ 
+    code: 0, 
+    data: { 
+      list, 
+      hasMore: total > offset + limit 
+    }});
+})
 
 app.listen('9000', () => {
   console.log('启动成功！')

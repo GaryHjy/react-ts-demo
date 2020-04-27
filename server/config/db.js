@@ -26,7 +26,7 @@ const LessonSchema = new mongoose.Schema({
   video: String,//视频
   poster: String, //海报
   url: String,//url地址
-  price: Number,//价格
+  price: String,//价格
   category: String,//分类
 })
 
