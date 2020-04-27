@@ -20,3 +20,6 @@ export const SET_LESSONS_LOADING = 'SET_LESSONS_LOADING'
 
 // 设置课程列表
 export const SET_LESSONS = 'SET_LESSONS'
+
+// 根据分类重新请求课程列表
+export const REFRESH_LESSONS = 'REFRESH_LESSONS'

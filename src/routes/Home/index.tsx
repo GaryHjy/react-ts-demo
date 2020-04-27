@@ -40,6 +40,7 @@ class Home extends Component<Props, State> {
     return (
       <div className="home">
         <HomeHeader
+          refreshLessons={this.props.refreshLessons}
           setCurrentCategory={this.props.setCurrentCategory}
           currentCategory={this.props.currentCategory} />
         <div className="home-container" ref={this.homeContainerRef}>

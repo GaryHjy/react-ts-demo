@@ -36,5 +36,26 @@ export default {
         }
       }
     }
+  },
+  refreshLessons():TypeThunkFunction {
+    return async function(dispatch: Dispatch, getState: Store['getState']) {
+      let { currentCategory, lessons: { loading, limit }} = getState().home;
+      if(!loading) {
+        dispatch({
+          type: TYPES.SET_LESSONS_LOADING,
+          payload: true
+        })
+        let result:any = await getLessons(currentCategory, 0, limit);
+        if(result.code === 0) {
+          dispatch({
+            type: TYPES.REFRESH_LESSONS,
+            payload: result.data
+          })
+        } else {
+          message.error(result.error)
+        }
+      }
+
+    }
   }
 }

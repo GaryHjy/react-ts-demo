@@ -28,6 +28,7 @@ const transitionStyle: TypeTransitionStyle = {
 interface props {
   currentCategory: string
   setCurrentCategory: any
+  refreshLessons: any
 }
 
 interface State {
@@ -43,7 +44,10 @@ class HomeHeader extends Component<props, State> {
     let type = (target as HTMLUListElement).dataset.type;
     this.setState({
       in: false
-    }, () => this.props.setCurrentCategory(type))
+    }, () => {
+      this.props.setCurrentCategory(type);
+      this.props.refreshLessons()
+    })
   }
   render () {
     return (

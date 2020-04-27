@@ -56,6 +56,16 @@ export default function (state: TypeHome = initialState, action: TypeAction): Ty
         hasMore: action.payload.hasMore,
         offset: state.lessons.offset + action.payload.list.length
       }}
+    case TYPES.REFRESH_LESSONS:
+      return {
+        ...state, lessons: {
+          ...state.lessons,
+          loading: false,
+          list: action.payload.list,
+          hasMore: action.payload.hasMore,
+          offset: action.payload.list.length
+        }
+      }
     default:
       return state;
   }
