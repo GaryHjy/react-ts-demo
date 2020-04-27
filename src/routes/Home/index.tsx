@@ -8,7 +8,7 @@ import HomeHeader from './HomeHeader/index';
 import HomeSlider from './HomeSlider/index'
 import LessonList from './LessonList/index';
 import './index.less';
-import { loadMore } from '../../utils/index';
+import { loadMore, downRefresh } from '../../utils/index';
 
 interface State {}
 // 当前组件有四个属性来源
@@ -34,7 +34,8 @@ class Home extends Component<Props, State> {
     this.lessonListRef = React.createRef();
   }
   componentDidMount() {
-    loadMore(this.homeContainerRef.current, this.props.getLessons)
+    loadMore(this.homeContainerRef.current, this.props.getLessons);
+    downRefresh(this.homeContainerRef.current, this.props.refreshLessons)
   }
   render () {
     return (
