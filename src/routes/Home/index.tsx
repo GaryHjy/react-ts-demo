@@ -35,7 +35,10 @@ class Home extends Component<Props, State> {
   }
   componentDidMount() {
     loadMore(this.homeContainerRef.current, this.props.getLessons);
-    downRefresh(this.homeContainerRef.current, this.props.refreshLessons)
+    downRefresh(this.homeContainerRef.current, this.props.refreshLessons);
+    this.homeContainerRef.current.addEventListener('scroll', () => {
+      this.lessonListRef.current.forceUpdate();
+    });
   }
   render () {
     return (
@@ -50,6 +53,7 @@ class Home extends Component<Props, State> {
             getSliders={this.props.getSliders}
           />
           <LessonList 
+            homeContainerRef={this.homeContainerRef}
             ref={this.lessonListRef}
             lessons={this.props.lessons}
             getLessons={this.props.getLessons}
