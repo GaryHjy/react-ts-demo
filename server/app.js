@@ -130,6 +130,14 @@ app.get('/api/getLessons', async (req,res) => {
     }});
 })
 
+app.get('/api/getLesson/:id', async (req, res) => {
+  const result = await Lesson.findById(req.params.id)
+  res.json({
+    code: 0,
+    data: result
+  });
+})
+
 app.listen('9000', () => {
   console.log('启动成功！')
 })
