@@ -28,14 +28,14 @@ class LessonList extends Component<Props> {
         <Skeleton loading={this.props.lessons.loading && this.props.lessons.list.length === 0} active>
           {
             this.props.lessons.list.map((lesson: Lesson) => (
-              <Link to={`/detail/${lesson._id}`} key={lesson._id}>
+              <Link to={{ pathname: `/detail/${lesson._id}`, state: lesson}} key={lesson._id}>
                 <Card
                   hoverable
                   style={{ width: '100%' }}
                   cover={<img src={lesson.poster} />}
                 >
                   <Meta title={lesson.title} description={<span>价格：{lesson.price}</span>} />
-                </Card>,
+                </Card>
               </Link>
             ))
           }

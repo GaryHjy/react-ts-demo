@@ -7,7 +7,6 @@ export interface Slider {
 
 export interface Lesson {
   _id: string, // id
-  order: number,//顺序
   title: string,//标题
   video: string,//视频
   poster: string, //海报

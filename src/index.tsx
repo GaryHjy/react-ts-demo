@@ -12,6 +12,7 @@ import Profile from './routes/Profile';
 import Tabs from './components/Tabs/index';
 import Login from './routes/Login/index';
 import Register from './routes/Register/index';
+import Detail from './routes/Detail';
 
 ReactDOM.render((
   <Provider store={store}>
@@ -23,6 +24,7 @@ ReactDOM.render((
           <Route path="/profile" exact component={Profile} />
           <Route path="/login" exact component={Login} />
           <Route path="/register" exact component={Register} />
+          <Route path="/detail/:id" exact component={Detail} />
           <Redirect to="/" />
         </Switch>
       </main>
