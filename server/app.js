@@ -113,7 +113,7 @@ app.get('/api/getSliders', async (req, res) => {
 
 
 app.get('/api/getLessons', async (req,res) => {
-  let { category = 'all', offset, limit} = req.query;
+  let { currentCategory: category = 'all', offset, limit} = req.query;
   offset = isNaN(offset) ? 0 : parseInt(offset);//偏移量 
   limit = isNaN(limit) ? 5 : parseInt(limit); //每页条数
   let query = {}
