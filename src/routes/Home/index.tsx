@@ -6,6 +6,7 @@ import actions from '../../store/actions/home';
 import { RouteComponentProps } from 'react-router-dom';
 import HomeHeader from './HomeHeader/index';
 import HomeSlider from './HomeSlider/index'
+import LessonList from './LessonList/index';
 import './index.less';
 
 interface State {}
@@ -39,6 +40,10 @@ class Home extends Component<Props, State> {
           <HomeSlider
             sliders={this.props.sliders}
             getSliders={this.props.getSliders}
+          />
+          <LessonList 
+            lessons={this.props.lessons}
+            getLessons={this.props.getLessons}
           />
         </div>
       </div>
